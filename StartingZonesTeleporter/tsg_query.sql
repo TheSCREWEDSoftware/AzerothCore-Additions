@@ -11,6 +11,7 @@ SET
 @GossipMenuOptionID6 := @GossipMenuOptionID0+6,
 @GossipMenuOptionID7 := @GossipMenuOptionID0+7,
 @GossipMenuOptionID8 := @GossipMenuOptionID0+8,
+@GossipMenuOptionIcon := 2,
 @GossipMenuOptionTextDefaultConfirmation := "Teleport to: ",
 @GossipMenuOptionText0 := "Valley of Trials",
 @GossipMenuOptionText1 := "Deathknell",
@@ -112,15 +113,15 @@ INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
 (@GossipMenuID, @GossipTextID);
 
 INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
-(@GossipMenuID, @GossipMenuOptionID0, 2, @GossipMenuOptionText0, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation0, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID1, 2, @GossipMenuOptionText1, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation1, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID2, 2, @GossipMenuOptionText2, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation2, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID3, 2, @GossipMenuOptionText3, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation3, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID4, 2, @GossipMenuOptionText4, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation4, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID5, 2, @GossipMenuOptionText5, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation5, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID6, 2, @GossipMenuOptionText6, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation6, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID7, 2, @GossipMenuOptionText7, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation7, 0, 0),
-(@GossipMenuID, @GossipMenuOptionID8, 2, @GossipMenuOptionText8, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation8, 0, 0);
+(@GossipMenuID, @GossipMenuOptionID0, @GossipMenuOptionIcon, @GossipMenuOptionText0, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation0, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID1, @GossipMenuOptionIcon, @GossipMenuOptionText1, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation1, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID2, @GossipMenuOptionIcon, @GossipMenuOptionText2, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation2, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID3, @GossipMenuOptionIcon, @GossipMenuOptionText3, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation3, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID4, @GossipMenuOptionIcon, @GossipMenuOptionText4, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation4, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID5, @GossipMenuOptionIcon, @GossipMenuOptionText5, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation5, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID6, @GossipMenuOptionIcon, @GossipMenuOptionText6, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation6, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID7, @GossipMenuOptionIcon, @GossipMenuOptionText7, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation7, 0, 0),
+(@GossipMenuID, @GossipMenuOptionID8, @GossipMenuOptionIcon, @GossipMenuOptionText8, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation8, 0, 0);
 
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (15, @GossipMenuID, @GossipMenuOptionID0, 0, 0, 6, 0, 67, 0, 0, 0, 0, 0, '', @ConditionGossipMenuOptionComment0),
