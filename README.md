@@ -3,6 +3,8 @@
 > [!NOTE]  
 > Without changing the SQL query / file it works out of the box.
 
+You can see a showcase of the Teleporter by clicking [here](https://www.youtube.com/watch?v=4ZdNJEGGdRs&ab_channel=TheSCREWEDSoftware). 
+
 <details>
 
 <summary>Click me to see more</summary>
