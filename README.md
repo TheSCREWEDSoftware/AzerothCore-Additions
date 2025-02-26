@@ -1,11 +1,11 @@
 ## StartingZonesTeleporter
 
+> [!NOTE]  
+> Without changing the SQL query / file it works out of the box.
+
 <details>
 
 <summary>Click me to see more</summary>
-
-> [!NOTE]  
-> Without changing the SQL query / file it works out of the box.
 
 ## What does this bring?
 
