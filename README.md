@@ -1,5 +1,9 @@
 ## StartingZonesTeleporter
 
+<details>
+
+<summary>Click me to see more</summary>
+
 > [!NOTE]  
 > Without changing the SQL query / file it works out of the box.
 
@@ -48,3 +52,5 @@ Variables refer to what in the database.
 - `@SmartAITargetYA` (smart_scripts.target_y)
 - `@SmartAITargetZA` (smart_scripts.target_z)
 - `@SmartAITargetOA` (smart_scripts.target_o)
+
+</details>
