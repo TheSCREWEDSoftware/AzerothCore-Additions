@@ -1,7 +1,9 @@
 # AzerothCore Additions
 
 > [!NOTE]  
-> You will need to have [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) to run the below
+> You will need to have [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) to run the below.
+
+---
 
 ## StartingZonesTeleporter
 
@@ -62,10 +64,14 @@ Variables refer to what in the database.
 
 </details>
 
+---
+
 ## self_services (Lua/Eluna Script)
 
 > [!NOTE]  
 > You will need to have [mod-eluna](https://github.com/azerothcore/mod-eluna) to use this.
+
+Inspired by [55Honey](https://github.com/55Honey)'s script and created for the usage [Chromiecraft](https://www.chromiecraft.com/en/)'s PTR
 
 In my case (for Windows), `lua_scripts` is at the same level / location as the `worldserver.exe` my `mod_eluna.conf` / `mod_LuaEngine.conf` has the `Eluna.ScriptPath = "lua_scripts"`.
 
@@ -79,13 +85,13 @@ You can see a showcase of the Teleporter by clicking [here](https://www.youtube.
 
 - Allows anyone who runs the command to use the service customise, change race or change faction without having gm permissions or running direct queries into the database, this uses the existing gm commands to achieve this and then kicks the player so they use the service(s).
 
-> [!NOTE]  
-> If you run all the three (3) unique commands without using the service after, they have a specific order that they appear as to be used:
-> `Customisation` -> `Faction Change` -> `Race Change`
+
+If you run all the three (3) unique commands without using the service after, they have a specific order that they appear as to be used:
+`Customisation` -> `Faction Change` -> `Race Change`
 
 ## How do use this?
 
-Just drop `self-services.lua` into your `lua_scripts`.
+Just drop `self-services.lua` into your `lua_scripts`
 
 In-game commands: `.selfcustomise` | `.selfcustomize` | `.selfchangerace` | `.selfchangefaction`
 
