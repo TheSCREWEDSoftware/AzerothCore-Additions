@@ -75,7 +75,9 @@ Inspired by [55Honey](https://github.com/55Honey)'s script and created for the u
 
 In my case (for Windows), `lua_scripts` is at the same level / location as the `worldserver.exe` my `mod_eluna.conf` / `mod_LuaEngine.conf` has the `Eluna.ScriptPath = "lua_scripts"`.
 
-You can see a showcase of self_services script [here](https://www.youtube.com/watch?v=0ARvJBiEr8c)
+You can see a showcase of self services script [here](https://www.youtube.com/watch?v=0ARvJBiEr8c).
+
+It displays an error (for non-gm characters) in the video, no longer an issue.
 
 <details>
 
