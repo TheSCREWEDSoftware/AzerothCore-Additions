@@ -5,6 +5,13 @@
 
 ---
 
+## CMAKE_source_build_path
+
+Allows you to run (with a defined source and path) via CLI or GUI without having to change the Source or Build manually everytime, useful for people that use more than 1 core and build (being AC or any other core).
+
+> [!NOTE]  
+> This is a batch file, meant to be used on windows, You need to have CMAKE System PATH set, otherwise doesn't work, normally when you install CMAKE it should already have the PATH set.
+
 ## StartingZonesTeleporter
 
 > [!NOTE]  
