@@ -69,7 +69,7 @@ pause
 :: -------------------------------------------------------------------------
 :: You can uncomment the lines below to automatically start the game.
 :: It assumes Wow.exe is located two directories above the realmlist.wtf file.
-:: remove the "::" before the, for CD and START below if you want wow to open
+:: remove the "::" before the: for, CD and START below if you want wow to open
 ::
 ::for %%A in ("%REALMLIST_PATH%") do set "REALMLIST_DIR=%%~dpA"
 ::cd /d "%REALMLIST_DIR%\..\.."
