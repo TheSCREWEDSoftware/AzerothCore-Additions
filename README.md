@@ -5,6 +5,13 @@
 
 ---
 
+## BATCH_realmlist_wtf_changer
+
+Allows you to change your realmlist.wtf via CMD / CLI this dynamically updates the option values based on the "Define option" part. You also can run the exe after pressing ENTER if you remove the comments `::` in Optional, for `for` `cd` and `start`. It sets the realmlist than runs the game.
+
+> [!NOTE]  
+> This is a batch file, meant to be used on windows.
+
 ## CMAKE_source_build_path
 
 Allows you to run (with a defined source and path) via CLI or GUI without having to change the Source or Build manually everytime, useful for people that use more than 1 core and build (being AC or any other core).
