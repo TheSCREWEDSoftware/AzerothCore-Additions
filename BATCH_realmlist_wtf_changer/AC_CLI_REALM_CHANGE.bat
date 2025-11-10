@@ -2,10 +2,10 @@
 setlocal enabledelayedexpansion
 
 :: Path to your realmlist.wtf
-set "REALMLIST_PATH=C:\Users\Ryan Turner\Desktop\Folders\New folders\2024\World of Warcraft - WoTLK\Data\enGB\realmlist.wtf"
+set "REALMLIST_PATH=DriveLetter:GameFolder\Data\<Locale>\realmlist.wtf"
 
 :: --- Define options ---
-set "option1=logon.chromiecraft.com"
+set "option1=my.dns.server"
 set "option2=127.0.0.1"
 :: You can add more: set "option3=another.server.example" 
 :: ----------------------
