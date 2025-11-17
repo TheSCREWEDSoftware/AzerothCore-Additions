@@ -34,45 +34,79 @@ if %maxOption% equ 1 (
     set "choicePrompt=Enter "
     for /L %%i in (1,1,%maxOption%) do (
         if %%i EQU 1 (
-            rem first item — no separator
             set "choicePrompt=!choicePrompt!%%i"
         ) else (
             if %%i EQU %maxOption% (
-                rem last item — use " or <n>: "
                 set "choicePrompt=!choicePrompt! or %%i: "
             ) else (
-                rem middle items — comma then space
                 set "choicePrompt=!choicePrompt!, %%i"
             )
         )
     )
 )
 
-:: Ask user input dynamically
 <nul set /p "=%choicePrompt%"
 set /p choice=
 
-:: Get corresponding value
 call set "selected=%%option%choice%%%"
 
 if not defined selected (
     echo Invalid choice. No changes made.
-) else (
-    echo SET realmlist %selected% > "%REALMLIST_PATH%"
-    echo File updated: SET realmlist %selected%
+    pause
+    exit /b
 )
+echo Selected server: %selected%
+echo SET realmlist %selected% > "%REALMLIST_PATH%"
+echo reamlist.wtf: SET realmlist %selected%
+
+:: -------------------------------------------------------------------------
+:: Optional: Start World of Warcraft After Setting Realmlist
+:: -------------------------------------------------------------------------
+::for %%A in ("%REALMLIST_PATH%") do set "REALMLIST_DIR=%%~dpA"
+::set "WOW_DIR=%REALMLIST_DIR%..\.."
+::pushd "%WOW_DIR%" 2>nul || (
+::    echo Could not find Wow.exe folder at "%WOW_DIR%"
+::    pause
+::    exit /b
+::)
+::start "" "Wow.exe"
+::popd
+:: -------------------------------------------------------------------------
+
+:: -------------------------------------------------------------------------
+:: Optional: Clear Cache After Setting Realmlist
+:: -------------------------------------------------------------------------
+::for %%A in ("%REALMLIST_PATH%") do set "REALMLIST_DIR=%%~dpA"
+::set "WOW_DIR=%REALMLIST_DIR%..\.."
+::if exist "%WOW_DIR%\Cache" (
+::    rmdir /s /q "%WOW_DIR%\Cache"
+::    echo Cache folder deleted.
+::) else (
+::    echo No Cache folder found.
+::)
+:: -------------------------------------------------------------------------
+
+:: -------------------------------------------------------------------------
+:: Optional: Clear Realm Name After Setting Realmlist
+:: -------------------------------------------------------------------------
+::for %%A in ("%REALMLIST_PATH%") do set "REALMLIST_DIR=%%~dpA"
+::set "WTF_DIR=%REALMLIST_DIR%..\..\WTF"
+::set "CONFIG_FILE=%WTF_DIR%\config.wtf"
+::if exist "%CONFIG_FILE%" (
+::    for /f "usebackq delims=" %%L in ("%CONFIG_FILE%") do (
+::        set "line=%%L"
+::        setlocal enabledelayedexpansion
+::        echo !line! | findstr /b /c:"SET realmName" >nul
+::        if errorlevel 1 (
+::            >>"%CONFIG_FILE%.tmp" echo !line!
+::        )
+::        endlocal
+::    )
+::    move /y "%CONFIG_FILE%.tmp" "%CONFIG_FILE%" >nul
+::    echo Realm name cleared in config.wtf
+::) else (
+::    echo config.wtf not found
+::)
+:: -------------------------------------------------------------------------
 
 pause
-
-:: -------------------------------------------------------------------------
-:: Optional, run wow with the set realmlist after you press ENTER in the end
-:: -------------------------------------------------------------------------
-:: You can uncomment the lines below to automatically start the game.
-:: It assumes Wow.exe is located two directories above the realmlist.wtf file.
-:: remove the "::" before the: for, CD and START below if you want wow to open
-::
-::for %%A in ("%REALMLIST_PATH%") do set "REALMLIST_DIR=%%~dpA"
-::cd /d "%REALMLIST_DIR%\..\.."
-::start "" "Wow.exe"
-::
-:: --------------------------------------------------------------------------
