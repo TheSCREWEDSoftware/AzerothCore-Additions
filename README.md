@@ -326,6 +326,7 @@ This generates 2 files:
 
 ---
 
+
 ### Copper to Silver or Gold Converter
 **File:** `copperToSilverOrGoldConverter.py`
 
@@ -340,16 +341,4 @@ Type the value in copper (or 'q' to quit): 234516
 23g 45s 16c
 ```
 
-> [!NOTE]  
-> You will need to have [mod-eluna](https://github.com/azerothcore/mod-eluna) to use this.
 
-In my case (for Windows), `lua_scripts` is at the same level / location as the `worldserver.exe` my `mod_eluna.conf` / `mod_LuaEngine.conf` has the `Eluna.ScriptPath = "lua_scripts"`.
-
-You can see a showcase of quest_Checker [here (no video yet)]().
-
-
-<details>
-
-<summary>Click me to see more</summary>
-
-</details>
