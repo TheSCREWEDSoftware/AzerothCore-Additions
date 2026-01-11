@@ -1,30 +1,93 @@
+
 # AzerothCore Additions
 
-> [!NOTE]  
+> [!NOTE]
 > You will need to have [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) to run the below.
 
 ---
 
-## BATCH_realmlist_wtf_changer
 
-Allows you to change your realmlist.wtf via CMD / CLI this dynamically updates the option values based on the "Define option" part. You also can run the exe after pressing ENTER if you remove the comments `::` in Optional, for `for` `cd` and `start`. It sets the realmlist than runs the game.
+## Folder Structure
 
-> [!NOTE]  
-> This is a batch file, meant to be used on windows.
+```
+|   README.md
+|
+|---0) BATCH
+|   |---CMAKE_source_build_path
+|   |   |   AC_CLI_CMAKE.bat
+|   |   |   AC_GUI_CMAKE.bat
+|   |
+|   |---realmlist_wtf_changer
+|       |   AC_CLI_REALM_CHANGE.bat
+|
+|---1) SQL
+|   |---MobileBanks
+|   |   |   search.sql
+|   |   |   tsg_guildBankQuery.sql
+|   |
+|   |---StartingZonesTeleporter
+|       |   tsg_query.sql
+|
+|---2) LUA - ELUNA - ALE Scripts
+|   |---Acore_SendAndBind
+|   |   |   Acore_SendAndBindV2.lua
+|   |
+|   |---quest_checker
+|   |   |   quest_checker.lua
+|   |
+|   |---self_services
+|       |   self_services.lua
+|
+|---4) Python Scripts
+		|---Copper to Silver or Gold Converter
+		|   |   copperToSilverOrGoldConverter.py
+		|
+		|---Remove Old Trainer Columns
+				|   removeTrainerColumns.py
+```
 
-## CMAKE_source_build_path
+---
 
-Allows you to run (with a defined source and path) via CLI or GUI without having to change the Source or Build manually everytime, useful for people that use more than 1 core and build (being AC or any other core).
+## Disclaimer
 
-> [!NOTE]  
-> This is a batch file, meant to be used on windows, You need to have CMAKE System PATH set, otherwise doesn't work, normally when you install CMAKE it should already have the PATH set.
+This README was updated on 11th of January 2026 with the help of AI (GitHub Copilot) to be less verbose and more structured.
 
-## StartingZonesTeleporter
+---
 
-> [!NOTE]  
+
+## 0) BATCH
+
+### realmlist_wtf_changer
+**File:** `AC_CLI_REALM_CHANGE.bat`
+
+Allows you to change your realmlist.wtf via CMD / CLI. Dynamically updates the option values based on the "Define option" part. You can also run the exe after pressing ENTER if you remove the comments `::` in Optional, for `for` `cd` and `start`. It sets the realmlist then runs the game.
+
+> [!NOTE]
+> This is a batch file, meant to be used on Windows.
+
+### CMAKE_source_build_path
+**Files:** `AC_CLI_CMAKE.bat`, `AC_GUI_CMAKE.bat`
+
+Allows you to run (with a defined source and path) via CLI or GUI without having to change the Source or Build manually every time. Useful for people that use more than 1 core and build (being AC or any other core).
+
+> [!NOTE]
+> This is a batch file, meant to be used on Windows. You need to have CMAKE System PATH set, otherwise it doesn't work. Normally, when you install CMAKE it should already have the PATH set.
+
+---
+
+
+## 1) SQL
+
+### MobileBanks
+**Files:** `search.sql`, `tsg_guildBankQuery.sql`
+
+### StartingZonesTeleporter
+**File:** `tsg_query.sql`
+
+> [!NOTE]
 > Without changing the SQL query / file it works out of the box.
 
-You can see a showcase of the Teleporter by clicking [here](https://www.youtube.com/watch?v=4ZdNJEGGdRs&ab_channel=TheSCREWEDSoftware). 
+You can see a showcase of the Teleporter by clicking [here](https://www.youtube.com/watch?v=4ZdNJEGGdRs&ab_channel=TheSCREWEDSoftware).
 
 <details>
 
@@ -80,7 +143,10 @@ Variables refer to what in the database.
 
 ---
 
-## self_services (Lua/Eluna Script)
+
+## 2) LUA - ELUNA - ALE Scripts
+
+### self_services (Lua/Eluna Script)
 
 > [!NOTE]  
 > You will need to have [mod-eluna](https://github.com/azerothcore/mod-eluna) to use this.
@@ -141,7 +207,8 @@ Want to use all services at once in a macro? (doesn't work while dead be free to
 
 </details>
 
-##  Acore_SendAndBind v2 / sendItemAndBind (Lua/Eluna Script)
+
+### Acore_SendAndBind v2 / sendItemAndBind (Lua/Eluna Script)
 
 > [!NOTE]  
 > You will need to have [mod-eluna](https://github.com/azerothcore/mod-eluna) to use this.
@@ -225,7 +292,53 @@ message: forgotten pantalones
 
 </details>
 
-##  quest_Checker (not finished) (Lua/Eluna Script)
+
+### quest_Checker (not finished) (Lua/Eluna Script)
+---
+
+## 4) Python Scripts
+
+### Remove Old Trainer Columns
+**File:** `removeTrainerColumns.py`
+
+**Created and tested with:** Python 3.12.4
+
+#### How to use?
+
+**Using CLI:**
+
+```
+python pathOfPythonFile SQLfileName
+```
+(The SQL file is expected to be in the same place as the Python script.)
+
+You can also just go into the path directly and just run both file names:
+
+```
+C:\Users\Ryan Turner\Desktop>python removeTrainerColumns.py myTest.sql
+> Modified file: myTest_1.sql
+> Diff file: myTest_1.sql.diff
+```
+
+This generates 2 files:
+- `filename_1.sql`
+- `filename_1.sql.diff`
+
+---
+
+### Copper to Silver or Gold Converter
+**File:** `copperToSilverOrGoldConverter.py`
+
+**Created and tested with:** Python 3.12.4
+
+Just run the script and insert the value in copper. It will display the gold, silver, and copper value.
+
+Example:
+
+```
+Type the value in copper (or 'q' to quit): 234516
+23g 45s 16c
+```
 
 > [!NOTE]  
 > You will need to have [mod-eluna](https://github.com/azerothcore/mod-eluna) to use this.
