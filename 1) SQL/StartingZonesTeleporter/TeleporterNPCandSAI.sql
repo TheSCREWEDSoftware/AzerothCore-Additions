@@ -14,7 +14,7 @@ SET @GossipMenuOptionID5 := @GossipMenuOptionID0+5; -- (5) Coldridge Valley (Dwa
 SET @GossipMenuOptionID6 := @GossipMenuOptionID0+6; -- (6) Shadowglen (Night Elf)
 SET @GossipMenuOptionID7 := @GossipMenuOptionID0+7; -- (7) Ammen Vale (Draenei)
 
-SET @GossipMenuOptionID8 := @GossipMenuOptionID0+8; -- (8) South Seas (Horde)
+SET @GossipMenuOptionID8 := @GossipMenuOptionID0+8; -- (8) South Seas (Neutral, all races)
 
 SET @GossipMenuOptionIcon := 2;
 SET @GossipMenuOptionTextDefaultConfirmation := "Teleport to: ";
@@ -118,11 +118,25 @@ SET @SmartAITargetY7 := -13955.2;
 SET @SmartAITargetZ7 := 100.746;
 SET @SmartAITargetO7 := 2.06004;
 
-SET @SmartAIMapID8 := 1; -- South Seas (Horde)
+SET @SmartAIMapID8 := 1; -- South Seas (Neutral, all races)
 SET @SmartAITargetX8 := -11858.2;
 SET @SmartAITargetY8 := -4759.62;
 SET @SmartAITargetZ8 := 6.1694;
 SET @SmartAITargetO8 := 0.233273;
+
+-- Horde
+SET @CreatureGUID0 := 5300682; -- Valley of Trials (Orc/Troll)
+SET @CreatureGUID1 := 5300683; -- Deathknell (Undead)
+SET @CreatureGUID2 := 5300684; -- Red Cloud Mesa (Tauren)
+SET @CreatureGUID3 := 5300685; -- Sunstrider Isle (Blood Elf)
+
+-- Alliance
+SET @CreatureGUID4 := 5300686; -- Northshire Abbey (Human)
+SET @CreatureGUID5 := 5300687; -- Coldridge Valley (Dwarf/Gnome)
+SET @CreatureGUID6 := 5300688; -- Shadowglen (Night Elf)
+SET @CreatureGUID7 := 5300689; -- Ammen Vale (Draenei)
+
+SET @CreatureGUID8 := 5300681; -- South Seas (Neutral, all races)
 
 DELETE FROM `npc_text` WHERE (`ID` = @GossipTextID);
 DELETE FROM `gossip_menu` WHERE (`MenuID` = @GossipMenuID);
@@ -132,6 +146,20 @@ DELETE FROM `conditions` WHERE (`SourceTypeOrReferenceId` = 15 AND `SourceGroup`
 
 DELETE FROM `creature_template` WHERE (`entry` = @CreatureEntry);
 DELETE FROM `creature_template_model` WHERE (`CreatureID` = @CreatureEntry);
+
+-- Horde
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID0); -- Valley of Trials (Orc/Troll)
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID1); -- Deathknell (Undead)
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID2); -- Red Cloud Mesa (Tauren)
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID3); -- Sunstrider Isle (Blood Elf)
+
+-- Alliance
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID4); -- Northshire Abbey (Human)
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID5); -- Coldridge Valley (Dwarf/Gnome)
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID6); -- Shadowglen (Night Elf)
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID7); -- Ammen Vale (Draenei)
+
+DELETE FROM `creature` WHERE (`guid` = @CreatureGUID8); -- South Seas (Neutral, all races)
 
 DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` = @CreatureEntry);
 
@@ -154,7 +182,7 @@ INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionTex
 (@GossipMenuID, @GossipMenuOptionID6, @GossipMenuOptionIcon, @GossipMenuOptionText6, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation6, 0, 0), -- Shadowglen (Night Elf), Darnassus
 (@GossipMenuID, @GossipMenuOptionID7, @GossipMenuOptionIcon, @GossipMenuOptionText7, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation7, 0, 0), -- Ammen Vale (Draenei), Exodar
 
-(@GossipMenuID, @GossipMenuOptionID8, @GossipMenuOptionIcon, @GossipMenuOptionText8, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation8, 0, 0); -- South Seas (Horde), Orgrimmar
+(@GossipMenuID, @GossipMenuOptionID8, @GossipMenuOptionIcon, @GossipMenuOptionText8, 0, 1, 1, 0, 0, 0, 0, @GossipMenuOptionTextConfirmation8, 0, 0); -- South Seas (Neutral, all races)
 
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 -- Horde
@@ -168,12 +196,28 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (15, @GossipMenuID, @GossipMenuOptionID5, 0, 0, 6, 0, 469, 0, 0, 0, 0, 0, '', @ConditionGossipMenuOptionComment5), -- Coldridge Valley (Dwarf/Gnome), Ironforge
 (15, @GossipMenuID, @GossipMenuOptionID6, 0, 0, 6, 0, 469, 0, 0, 0, 0, 0, '', @ConditionGossipMenuOptionComment6), -- Shadowglen (Night Elf), Darnassus
 (15, @GossipMenuID, @GossipMenuOptionID7, 0, 0, 6, 0, 469, 0, 0, 0, 0, 0, '', @ConditionGossipMenuOptionComment7); -- Ammen Vale (Draenei), Exodar
+-- (South Seas has no condition row: option 8 is neutral and visible to all races)
 
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
 (@CreatureEntry, 0, 0, 0, 0, 0, @CreatureName, @CreatureSubName, '', @GossipMenuID, 1, 80, 2, 35, 1, 1, 1.14286, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, '', 0);
 
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
 (@CreatureEntry, 0, @CreatureModelID, 1, 1, 0);
+
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
+-- Horde
+(@CreatureGUID0, @CreatureEntry, 1,   0, 0, 1, 1, 0, -592.635,  -4104.83, 44.4753,  5.16871, 300, 0, 0, 2533,  0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Valley of Trials (Orc/Troll)
+(@CreatureGUID1, @CreatureEntry, 0,   0, 0, 1, 1, 0, 1846.04,   1568.01,  95.1782,  5.31027, 300, 0, 0, 1277,  0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Deathknell (Undead)
+(@CreatureGUID2, @CreatureEntry, 1,   0, 0, 1, 1, 0, -2843.7,   -254.435, 53.9509,  3.14317, 300, 0, 0, 71,    0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Red Cloud Mesa (Tauren)
+(@CreatureGUID3, @CreatureEntry, 530, 0, 0, 1, 1, 0, 10332.5,   -6404.5,  38.5286,  1.39616, 300, 0, 0, 1336,  0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Sunstrider Isle (Blood Elf)
+
+-- Alliance
+(@CreatureGUID4, @CreatureEntry, 0,   0, 0, 1, 1, 0, -8929.5,   -158.767, 81.1121,  2.80105, 300, 0, 0, 10635, 0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Northshire Abbey (Human)
+(@CreatureGUID5, @CreatureEntry, 0,   0, 0, 1, 1, 0, -6204.54,  308.782,  389.318,  2.51434, 300, 0, 0, 86,    0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Coldridge Valley (Dwarf/Gnome)
+(@CreatureGUID6, @CreatureEntry, 1,   0, 0, 1, 1, 0, 10301.3,   834.538,  1327.87,  4.21441, 300, 0, 0, 5742,  0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Shadowglen (Night Elf)
+(@CreatureGUID7, @CreatureEntry, 530, 0, 0, 1, 1, 0, -3948.87,  -13957.5, 100.376,  1.94616, 300, 0, 0, 905,   0, 0, 0, 0, 0, '', NULL, 0, NULL), -- Ammen Vale (Draenei)
+
+(@CreatureGUID8, @CreatureEntry, 1,   0, 0, 1, 1, 0, -11861.1,  -4758.27, 6.13462,  6.20857, 300, 0, 0, 9610,  0, 0, 0, 0, 0, '', NULL, 0, NULL); -- South Seas (Neutral, all races)
 
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 -- Horde
