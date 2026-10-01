@@ -1,33 +1,53 @@
 # self_services (Lua/Eluna Script)
 
-> [!NOTE]  
+**File:** `self_services.lua`
+
+> [!NOTE]
 > You will need to have [mod-eluna](https://github.com/azerothcore/mod-eluna) to use this.
 
-Inspired by [55Honey](https://github.com/55Honey)'s script and created for the usage [Chromiecraft](https://www.chromiecraft.com/en/)'s PTR
+Inspired by [55Honey](https://github.com/55Honey)'s script and created for the usage of [Chromiecraft](https://www.chromiecraft.com/en/)'s PTR.
 
-In my case (for Windows), `lua_scripts` is at the same level / location as the `worldserver.exe` my `mod_eluna.conf` / `mod_LuaEngine.conf` has the `Eluna.ScriptPath = "lua_scripts"`.
+You can see a showcase of the self services script [here](https://www.youtube.com/watch?v=0ARvJBiEr8c). It displays an error (for non-gm characters) in the video, that is no longer an issue.
 
-You can see a showcase of self services script [here](https://www.youtube.com/watch?v=0ARvJBiEr8c).
+## What does this do and how?
 
-It displays an error (for non-gm characters) in the video, no longer an issue.
+Allows any player to customise, change race or change faction of their own character with a command, without having gm permissions and without running queries in the database.
 
-## What does this bring?
+It uses the existing gm commands (`character customize`, `character changerace`, `character changefaction`), runs them from the server side for the player that typed the command, saves the character and then kicks the player after 5 seconds so the service shows up on the character screen.
 
-- Allows anyone who runs the command to use the service customise, change race or change faction without having gm permissions or running direct queries into the database, this uses the existing gm commands to achieve this and then kicks the player so they use the service(s).
+## How to use this
 
-If you run all the three (3) unique commands without using the service after, they have a specific order that they appear as to be used:
-`Customisation` -> `Faction Change` -> `Race Change`
+1. Drop `self_services.lua` into your `lua_scripts`.
+2. Restart the worldserver or reload Eluna.
+3. Type one of the commands in-game:
 
-## How do use this?
+| Command | Service |
+|---|---|
+| `.selfcustomise` or `.selfcustomize` | Character Customisation |
+| `.selfchangerace` | Race Change |
+| `.selfchangefaction` | Faction Change |
 
-Just drop `self_services.lua` into your `lua_scripts`
+If you run all three before logging back in, they are used in this order: `Customisation` -> `Faction Change` -> `Race Change`
 
-In-game commands: `.selfcustomise` | `.selfcustomize` | `.selfchangerace` | `.selfchangefaction`
+Want to use all services at once in a macro? (doesn't work while dead, be free to change `/say` to something else)
 
-## What should I change?
+```
+/say .selfcustomise
+/say .selfchangerace
+/say .selfchangefaction
+```
 
-`local ENABLE_LOGGING = 0` change the `0` to `1` if you wish to enable logging.
-The logging will something like this:
+## How to customise it
+
+- `local ENABLE_LOGGING = 0` - change the `0` to `1` if you wish to enable logging.
+- `end, 5000, 1)` - change the `5000` to the value you prefer (in milliseconds). This is the time the script waits before kicking the player, by default 5 seconds. The message "You will be disconnected in 5 seconds..." is plain text, change it too if you change the time.
+
+## Other Technical Stuff
+
+- In my case (for Windows), `lua_scripts` is at the same level / location as the `worldserver.exe` and my `mod_eluna.conf` / `mod_LuaEngine.conf` has `Eluna.ScriptPath = "lua_scripts"`.
+- The commands only work in-game. From the worldserver console they answer "This command can only be used in-game by players."
+- The log file is named after the script and is created next to it. `self_services.lua` writes `self_services.log`, rename the script and the log name follows. The `worldserver` output uses the `[SelfServices]` prefix.
+- The logging will look something like this:
 
 ```
 [07-16-2025 03:53 PM] Executing: character customize Ada | Ada (GUID: 84) from RYAN4 (Account ID: 7)
@@ -40,19 +60,7 @@ The logging will something like this:
 [07-16-2025 03:54 PM] Ada used Race Change | Ada (GUID: 84) from RYAN4 (Account ID: 7)
 ```
 
-`end, 5000, 1)` change the `5000` to what value you prefer (in millieseconds), this is the time that the script waits before kicking the player, by default is 5 seconds.
-
-The `self_services.lua` is dynamic naming for the log file (will always match, in this case `self_services.log`, and same for `worldserver` output messages).
-
-Want to use all services at once in a macro? (doesn't work while dead be free to change `/say` to something else).
-
-```
-/say .selfcustomise
-/say .selfchangerace
-/say .selfchangefaction
-```
-
 ---
 
 > [!NOTE]
-> This README was modified by Claude (Anthropic's AI assistant, via Claude Code) from the existing write-up in this project's main README. Read every command/query before running it, and treat any example values as placeholders to be replaced with your own.
+> This README was modified by Claude (Anthropic's AI assistant, via Claude Code) using the previous README and the files in this folder. Read every command/query before running it, and treat any example values as placeholders to be replaced with your own.
