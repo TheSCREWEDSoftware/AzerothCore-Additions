@@ -6,7 +6,7 @@
 
 ## What does this do and how?
 
-AzerothCore removed the trainer columns from `creature_template`, so older SQL files that still have them fail to run. This script removes those columns and their values for you.
+AzerothCore removed the trainer columns from [`creature_template`](https://www.azerothcore.org/wiki/creature_template), so older SQL files that still have them fail to run. This script removes those columns and their values for you.
 
 It reads your SQL file, finds every `INSERT INTO creature_template` that has a column list, drops these four columns and the matching value from every row, and saves the result as a new file:
 
@@ -44,7 +44,7 @@ This generates 2 files:
 
 ## Other Technical Stuff
 
-- Only `creature_template` statements are touched, everything else in the file is copied as it is.
+- Only [`creature_template`](https://www.azerothcore.org/wiki/creature_template) statements are touched, everything else in the file is copied as it is.
 - An INSERT without a column list is left alone, the script can't know which value belongs to which column.
 - If `filename_1.sql` already exists it uses `_2`, `_3` and so on, it never overwrites.
 - Files are read and written as UTF-8.

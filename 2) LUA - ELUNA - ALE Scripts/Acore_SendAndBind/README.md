@@ -13,7 +13,7 @@ You can see a showcase of Acore_SendAndBind v2 [here](https://www.youtube.com/wa
 
 Sends an item by mail to a character and makes it soulbound to that character, so it can't be traded or sold on. Made for things like shop or reward items.
 
-It works for online and offline characters, by name or by GUID. If the character is online the script sets the owner and the binding on the item directly, if it is offline it does it with two `UPDATE` queries on `item_instance`. Everything is written to a log file.
+It works for online and offline characters, by name or by GUID. If the character is online the script sets the owner and the binding on the item directly, if it is offline it does it with two `UPDATE` queries on [`item_instance`](https://www.azerothcore.org/wiki/item_instance). Everything is written to a log file.
 
 ## How to use this
 

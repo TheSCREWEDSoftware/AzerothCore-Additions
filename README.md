@@ -100,7 +100,7 @@ Mails an item to a player (online or offline) and makes it soulbound, with clear
 ## 4) Python Scripts
 
 ### [Remove Old Trainer Columns](<4) Python Scripts/Remove Old Trainer Columns/README.md>)
-Removes the old trainer columns from `creature_template` statements in a SQL file.
+Removes the old trainer columns from [`creature_template`](https://www.azerothcore.org/wiki/creature_template) statements in a SQL file.
 
 ### [Copper to Silver or Gold Converter](<4) Python Scripts/Copper to Silver or Gold Converter/README.md>)
 Turns a copper value into gold, silver and copper.
