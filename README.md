@@ -67,12 +67,6 @@
 
 ---
 
-## Disclaimer
-
-This README was updated on 11th of January 2026 with the help of AI (GitHub Copilot) to be less verbose and more structured.
-
----
-
 ## 0) BATCH
 
 ### [realmlist_wtf_changer](<0) BATCH/realmlist_wtf_changer/README.md>)
